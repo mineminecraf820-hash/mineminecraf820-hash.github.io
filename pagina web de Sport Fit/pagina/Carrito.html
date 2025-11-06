@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito</title>
+  <link rel="icon" href="images/Captura de pantalla (3497).png">
+  <script src="Carrito.js" defer></script>
+  <link rel="stylesheet" href="Carrito.css">
+</head>
+<body onload="mostrarCarrito()">
+  <div class="contenedor-carrito">
+
+    <div id="notificacion" style="display:none; position: fixed; top: 10px; right: 10px; background:#125e28; color:#fff; padding: 10px 20px; border-radius: 6px; box-shadow: 0 0 10px #e7aa03; z-index: 1000;"></div>
+
+    <h2>Tus pares favoritos de tenis ¡aquí!</h2>
+
+    <ul id="lista-carrito"></ul>
+    <div class="carrito-control">
+  <p id="total" class="total">Total: Bs 0.00</p>
+  <button onclick="vaciarCarrito()">Vaciar carrito</button>
+</div>
+
+  <!-- Formulario de compra -->
+    <h3>Ingresar datos para finalizar la compra</h3>
+    <form id="formulario-compra" onsubmit="procesarCompra(event)">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre" required>
+  <br>
+  <label for="direccion">Dirección:</label>
+  <input type="text" id="direccion" name="direccion" required>
+  <br>
+  <label for="telefono">Teléfono:</label>
+  <input type="tel" id="telefono" name="telefono" required>
+  <br>
+  <label for="correo">Correo electrónico:</label>
+  <input type="email" id="correo" name="correo" required>
+  <br><br>
+
+  <!-- Método de pago -->
+  <label for="metodo-pago">Método de pago:</label>
+  <select id="metodo-pago" name="metodo-pago" required>
+    <option value="contra-entrega">Pago contra entrega</option>
+    <option value="qr">Pago con código QR</option>
+  </select>
+  <br><br>
+
+  <!-- Campos condicionales para método de pago -->
+  <div id="datos-tarjeta" style="display:none; margin-top: 10px;">
+    <label for="num-tarjeta">Número de tarjeta:</label>
+    <input type="text" id="num-tarjeta" name="num-tarjeta" maxlength="16" pattern="\d{16}" placeholder="1234 5678 9012 3456" />
+    <label for="fecha-exp">Fecha expiración:</label>
+    <input type="month" id="fecha-exp" name="fecha-exp" />
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" name="cvv" maxlength="3" pattern="\d{3}" placeholder="123" />
+  </div>
+
+  <div id="datos-paypal" style="display:none; margin-top: 10px;">
+    <label for="email-paypal">Correo PayPal:</label>
+    <input type="email" id="email-paypal" name="email-paypal" placeholder="tu-email@paypal.com" />
+  </div>
+
+  <div id="datos-transferencia" style="display:none; margin-top: 10px;">
+    <label for="num-cuenta">Número de cuenta bancaria:</label>
+    <input type="text" id="num-cuenta" name="num-cuenta" placeholder="1234567890" />
+    <label for="banco">Banco:</label>
+    <input type="text" id="banco" name="banco" placeholder="Nombre del banco" />
+  </div>
+
+  <!-- Campo para QR -->
+<div id="datos-qr" style="display:none; margin-top: 10px;">
+  <p>Escanea este código QR para realizar el pago a <strong>Sport Fit</strong>:</p>
+  <img src="images/qr de la empresa.jpg" alt="Código QR para pago" style="max-width: 200px;">
+  
+  <p><strong>Código o referencia para pago:</strong></p>
+  <input type="text" id="codigo-pedido" readonly style="font-weight:bold; font-size: 1.2em;" />
+  
+  <p><strong>IMPORTANTE:</strong> ESCRIBE ESTE CODIGO COMO REFERENCIA DEL PAGO.</p>
+
+</div>
+
+  <button type="submit"<a href="https://web.whatsapp.com">Finalizar compra </a></button>
+</form>
+
+  <a href="file:///C:/Users/Administrador/Documents/pagina%20web%20de%20Sport%20Fit/pagina/index.html1.html" class="btn">⬅ Volver al inicio</a>
+
+  <!-- Modal Confirmación Vaciar Carrito -->
+<div id="modal-vaciar" class="modal" style="display:none;">
+  <div class="modal-contenido">
+    <p>¿Estás seguro de vaciar el carrito?</p>
+    <div class="modal-botones">
+      <button id="btn-si">Sí</button>
+      <button id="btn-no">No</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
